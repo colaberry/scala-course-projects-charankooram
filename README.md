@@ -1,6 +1,6 @@
 
-# Your Name Here
-Venkat Kooram
+# Venkat  Kooram
+
 
 Recent Graduate student with a course specialization in Intelligent systems and Big Data Management. Inspired from previous Big Data projects, now seeking to become an expert in Big Data stack.
 
