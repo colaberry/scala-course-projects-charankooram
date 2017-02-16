@@ -28,12 +28,10 @@ case class School(students : ArrayBuffer[Student], courses : ArrayBuffer[Course]
 
 
   def deEnroll(course : Course , student : Student)={
-    if(students.contains(course) && courses.contains(course)){
+
       course.removeCandidate(student)
       student.removeCourse(course)
-    }else{
-      println("Invalid Operation. Either Course not present or Student not present")
-    }
+
 
   }
 
