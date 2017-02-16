@@ -29,11 +29,22 @@ case class School(students : ArrayBuffer[Student], courses : ArrayBuffer[Course]
 
   def deEnroll(course : Course , student : Student)={
 
+    if(students.contains(student)) {
       course.removeCandidate(student)
       student.removeCourse(course)
-
-
+    }
   }
+
+  def ListAllStudentsInSchool() : ArrayBuffer[Student] =students
+
+  def ListAllCoursesOfferedinSchool() : ArrayBuffer[Course] = courses
+
+  def AddStudentToSchool(student : Student)={
+    students.+=(student)
+    // Manually enroll a student to his required courses
+  }
+
+
 
    override def toString(): String = ""
 }

@@ -125,7 +125,7 @@ object Driver extends App {
   println()
 
     school.deEnroll(c1,s1)
-    school.deEnroll(c1,s1)
+    //school.deEnroll(c1,s1)
 
     println("Tests after derollment")
     println()
@@ -202,6 +202,29 @@ object Driver extends App {
   for(r <- s5.registeredCourses()) print(r+" ")
   println()
   println()
+
+
+  println("Students in school")
+  for(r <- school.ListAllStudentsInSchool()) print(r+" ")
+  println()
+
+  println("Courses in school")
+  for(r <- school.ListAllCoursesOfferedinSchool()) print(r+" ")
+  println()
+  println()
+
+
+
+
+  println("Students in school")
+  for(r <- school.ListAllStudentsInSchool()) print(r+" ")
+  println()
+  println()
+
+
+
+
+
 
 
 
