@@ -7,11 +7,16 @@ import akka.actor._
   */
 class Receiver extends Actor with ActorLogging {
 
+
+  override def preStart():Unit = {
+    Console println ("in prestart of receiver!")
+  }
+
   def receive = {
     case GreeterMessages.Greet => {
       var greetmessage = "your greeting received"
-      println(greetmessage)
-      log.info(greetmessage)
+      Console println greetmessage
+      log info greetmessage
 
       context.sender() ! GreeterMessages.Done
     }

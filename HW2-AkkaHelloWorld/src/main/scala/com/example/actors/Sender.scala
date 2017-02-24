@@ -8,6 +8,7 @@ import akka.actor._
 class Sender extends Actor {
 
   override def preStart(): Unit = {
+      Console println "in prestart of sender"
       val receiver = context.actorOf(Props[Receiver],"receiver")
       receiver ! GreeterMessages.Greet
   }

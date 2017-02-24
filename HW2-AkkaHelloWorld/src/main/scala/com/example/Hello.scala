@@ -19,9 +19,12 @@ import com.example.actors._
 object HelloSimpleMain {
 
   def main(args: Array[String]): Unit = {
-    val initialActor = classOf[Sender].getName
-    println(initialActor)
-    akka.Main.main(Array(initialActor))
+    val Actor1 = classOf[Sender].getName
+    val Actor2 = classOf[HelloWorldActor].getName
+    println(Actor1)
+    println(Actor2)
+    //system.actor
+    akka.Main.main(Array(Actor2))
   }
 
 }
