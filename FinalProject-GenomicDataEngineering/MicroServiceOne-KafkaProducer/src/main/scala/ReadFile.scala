@@ -7,11 +7,7 @@ import akka.stream.ActorMaterializer
   */
 object ReadFile extends App   {
 
-    val Actor1 = classOf[Origin].getName
+  val Actor1 = classOf[Origin].getName
 
     akka.Main.main(Array(Actor1))
-
-
-
-
 }

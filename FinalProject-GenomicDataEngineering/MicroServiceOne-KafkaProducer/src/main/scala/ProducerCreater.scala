@@ -22,6 +22,7 @@ class ProducerCreater(implicit  mat: Materializer) extends Actor {
 
   override def receive : Receive  = {
     case MessageTalk.Run => {
+
       Console println "Starting produer "
 
       val producerSettings = ProducerSettings(context.system, new ByteArraySerializer, new StringSerializer)
