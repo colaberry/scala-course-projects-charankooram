@@ -9,6 +9,7 @@ import akka.stream.scaladsl.{Keep, Sink}
 import kafka.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{ByteArrayDeserializer, ByteArraySerializer, StringDeserializer, StringSerializer}
+import scala.concurrent.ExecutionContext.Implicits.global
 
 import scala.concurrent.Future
 
@@ -26,7 +27,9 @@ class ConsumerCreater(implicit mat: Materializer )  extends Actor {
 
     case MessageTalk.Run => {
 
-      // Create Producer Settings for new topic -- topic3
+     var count = 0
+
+   // Create Producer Settings for new topic -- topic3
       val producerSettings = ProducerSettings(context.system, new ByteArraySerializer, new StringSerializer)
         .withBootstrapServers("localhost:9092")
 
@@ -36,19 +39,26 @@ class ConsumerCreater(implicit mat: Materializer )  extends Actor {
       val consumerSettings = ConsumerSettings(context.system,new ByteArrayDeserializer,new StringDeserializer )
                                 .withBootstrapServers("localhost:9092")
                                 .withGroupId("group1")
-                                //.withProperty(ConsumerConfig.AutoOffsetReset,"earliest")
-      Consumer.committableSource(consumerSettings, Subscriptions.topics("topic2")).
+
+      /*
+      *  Source - KAFKA Consumer to subscribe from topicA
+      *  Map function - Manipulate (lowercase all the string objects) each record from this topic and push into Another topic in KAFKA
+      *  Sink - Producer sink created earlier
+      * */
+      Consumer.committableSource(consumerSettings, Subscriptions.topics("topicA")).
         map(
             elem =>{
-
-
-
-            //println("testing element "+elem.record.value())
-              new ProducerRecord[Array[Byte],String]("topic3", elem.record.value())
+             count+=1
+              println("testing element "+elem.record.value()+" "+count)
+              new ProducerRecord[Array[Byte],String]("topic3", manipulate(elem.record.value()))
 
               //elem
             }
-        ).runWith(prodsink)
+        ).runWith(prodsink).onComplete({
+        case success => {
+          println("number of lines read from kafka "+count)
+        }
+      })
 
 
 
@@ -70,6 +80,8 @@ class ConsumerCreater(implicit mat: Materializer )  extends Actor {
   }
 
 
+
+  def manipulate(s:String) : String = s.toLowerCase
 
 
 
