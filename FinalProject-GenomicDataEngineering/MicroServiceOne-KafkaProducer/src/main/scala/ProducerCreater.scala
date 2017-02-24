@@ -4,6 +4,7 @@ import akka.kafka.ProducerSettings
 import akka.kafka.scaladsl.Producer
 import akka.stream.{ActorMaterializer, Materializer}
 import akka.stream.scaladsl.Source
+import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
 
@@ -26,10 +27,10 @@ class ProducerCreater(implicit  mat: Materializer) extends Actor {
       Console println "Starting produer "
 
       val producerSettings = ProducerSettings(context.system, new ByteArraySerializer, new StringSerializer)
-        .withBootstrapServers("localhost:9092")
+        .withBootstrapServers(ConfigFactory.load().getString("constants.ip")+":"+ConfigFactory.load().getString("constants.port"))
 
 
-     val source = scala.io.Source.fromFile("C:\\Users\\Colaberry2017\\Downloads\\1000genomes2.csv")
+     val source = scala.io.Source.fromFile(ConfigFactory.load().getString("constants.file-name"))
 
       // count the number of lines processed
       // cannot use mapAsync - because of mutable object
@@ -43,7 +44,7 @@ class ProducerCreater(implicit  mat: Materializer) extends Actor {
       val something: Future[Done] = Source.fromIterator(()=>source.getLines())
                                           .map(elem => {
                                                         count+=1
-                                                        new ProducerRecord[Array[Byte],String]("topicA", elem)
+                                                        new ProducerRecord[Array[Byte],String](ConfigFactory.load().getString("constants.producer-topic"), elem)
                                                         })
                                           .runWith(Producer.plainSink(producerSettings))
 

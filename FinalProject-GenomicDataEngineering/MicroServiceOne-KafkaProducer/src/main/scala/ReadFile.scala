@@ -9,5 +9,5 @@ object ReadFile extends App   {
 
   val Actor1 = classOf[Origin].getName
 
-    akka.Main.main(Array(Actor1))
+  akka.Main.main(Array(Actor1))
 }
