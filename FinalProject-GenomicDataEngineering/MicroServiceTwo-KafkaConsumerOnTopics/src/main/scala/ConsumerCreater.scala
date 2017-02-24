@@ -6,11 +6,12 @@ import akka.kafka.{ConsumerSettings, ProducerSettings, Subscriptions}
 import akka.kafka.scaladsl.{Consumer, Producer}
 import akka.stream.Materializer
 import akka.stream.scaladsl.{Keep, Sink}
+import com.typesafe.config.ConfigFactory
 import kafka.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{ByteArrayDeserializer, ByteArraySerializer, StringDeserializer, StringSerializer}
-import scala.concurrent.ExecutionContext.Implicits.global
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 
@@ -31,26 +32,26 @@ class ConsumerCreater(implicit mat: Materializer )  extends Actor {
 
    // Create Producer Settings for new topic -- topic3
       val producerSettings = ProducerSettings(context.system, new ByteArraySerializer, new StringSerializer)
-        .withBootstrapServers("localhost:9092")
+        .withBootstrapServers(ConfigFactory.load().getString("constants.ip")+":"+ConfigFactory.load().getString("constants.port"))
 
       val prodsink = Producer.plainSink(producerSettings)
 
       // Create Consumer Settings
       val consumerSettings = ConsumerSettings(context.system,new ByteArrayDeserializer,new StringDeserializer )
-                                .withBootstrapServers("localhost:9092")
-                                .withGroupId("group1")
+                                .withBootstrapServers(ConfigFactory.load().getString("constants.ip")+":"+ConfigFactory.load().getString("constants.port"))
+                                .withGroupId(ConfigFactory.load().getString("constants.group"))
 
       /*
       *  Source - KAFKA Consumer to subscribe from topicA
       *  Map function - Manipulate (lowercase all the string objects) each record from this topic and push into Another topic in KAFKA
       *  Sink - Producer sink created earlier
       * */
-      Consumer.committableSource(consumerSettings, Subscriptions.topics("topicA")).
+      Consumer.committableSource(consumerSettings, Subscriptions.topics(ConfigFactory.load().getString("constants.consumer-topic"))).
         map(
             elem =>{
              count+=1
               println("testing element "+elem.record.value()+" "+count)
-              new ProducerRecord[Array[Byte],String]("topic3", manipulate(elem.record.value()))
+              new ProducerRecord[Array[Byte],String](ConfigFactory.load().getString("constants.producer-topic"), manipulate(elem.record.value()))
 
               //elem
             }
