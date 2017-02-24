@@ -40,16 +40,10 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
 
   override def receive : Receive = {
 
-
-
     case MessageTalk.Run => {
 
-
-
       Console println "Reading File ..."
-      val source = scala.io.Source.fromFile("C:\\Users\\Colaberry2017\\Downloads\\1000genomes2.csv")
-
-
+      val source = scala.io.Source.fromFile(ConfigFactory.load().getString("constants.file-name"))
 
       val firstLine: Array[String] = source.getLines().take(1).next().split(",")
       println("Test -- Number of Columns in First Line (Header from File) "+firstLine.length)
@@ -89,8 +83,8 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
 
       // Create Consumer Settings
       val consumerSettings = ConsumerSettings(context.system,new ByteArrayDeserializer,new StringDeserializer )
-                                .withBootstrapServers("localhost:9092")
-                                .withGroupId("group1")
+                                .withBootstrapServers(ConfigFactory.load().getString("services.ip-api.host")+":"+ConfigFactory.load().getString("services.ip-api.port"))
+                                .withGroupId(ConfigFactory.load().getString("constants.group"))
 
       /*
       *   Source - KAFKA Consumer subscribed to topic3
@@ -190,7 +184,8 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
               // Initial successfully working json body request
               // "{\"data\":\"" + id + "\"}"
 
-              val req = HttpRequest(HttpMethods.POST, uri = s"/capstone223510/genomes/$id", entity = HttpEntity(ContentTypes.`application/json`, ByteString(builder.toString())))
+              val uri_string = ConfigFactory.load().getString("uri")
+              val req = HttpRequest(HttpMethods.POST, uri = uri_string +id, entity = HttpEntity(ContentTypes.`application/json`, ByteString(builder.toString())))
 
               req
 
@@ -198,19 +193,6 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
             }
         ).via(ipApiConnectionFlow)
         .runWith(Sink.ignore)
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     case _ => println("In default case run")
@@ -219,13 +201,6 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
 
   lazy val ipApiConnectionFlow: Flow[HttpRequest, HttpResponse, Any] =
     Http().outgoingConnection(ConfigFactory.load().getString("services.ip-api.host"), ConfigFactory.load().getInt("services.ip-api.port"))
-
-
-
-
-
-
-
 }
 
 
