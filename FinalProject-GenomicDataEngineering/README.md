@@ -98,10 +98,27 @@ without rebuilding the whole project again.
 ## Results
 
 The data consists of comma separated  valued file with about 62 columns and 3502 lines
+Like hinted below
+
 ![~](readme-data-show.PNG)
+
+When not using docker, first deploy kafka; configured constants correctly and start
+the micro-services two and three to start the Kafka Consumers.
+
 ![~](readme-final-start2and3.PNG)
+
+Start MicroService One to start the Kafka Producer. We should start observing service-2
+to print modified data into it's console and service-3 printing json body for each
+elastic search load request
+
 ![~](readme-starting-service1.PNG)
+
+Start fourth service to provide api to access this data from a web-browser or any related client
+
 ![~](readme-fourth-service-started.PNG)
+
+Snapshot of all 62 columns retrieved for a particular id of the record
+
 ![~](readme-browser-test.PNG)
 
 
