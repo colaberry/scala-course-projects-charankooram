@@ -98,11 +98,11 @@ without rebuilding the whole project again.
 ## Results
 
 The data consists of comma separated  valued file with about 62 columns and 3502 lines
-!(https://github.com/Colaberry/scala-course-projects-charankooram/blob/master/FinalProject-GenomicDataEngineering/readme-data-show.PNG)
-!(https://github.com/Colaberry/scala-course-projects-charankooram/blob/master/FinalProject-GenomicDataEngineering/readme-final-start2and3.PNG)
-!(https://github.com/Colaberry/scala-course-projects-charankooram/blob/master/FinalProject-GenomicDataEngineering/readme-starting-service1.PNG)
-!(https://github.com/Colaberry/scala-course-projects-charankooram/blob/master/FinalProject-GenomicDataEngineering/readme-fourth-service-started.PNG)
-!(https://github.com/Colaberry/scala-course-projects-charankooram/blob/master/FinalProject-GenomicDataEngineering/readme-browser-test.PNG)
+!(/readme-data-show.PNG)
+!(/readme-final-start2and3.PNG)
+!(/readme-starting-service1.PNG)
+!(/readme-fourth-service-started.PNG)
+!(/readme-browser-test.PNG)
 
 
  
