@@ -8,7 +8,7 @@ query the data for any information.
 
 ## Description
 The final Capstone project is divided into 4 stages of micro-services. Each one is designed to 
-act as a temporary back-up storage after the next level  and to act as an independent entity each
+act as a temporary back-up storage for the next level  and to act as an independent entity each
 accomplishing a portion of the overall business goal. 
 
 The first Micro-Service is designed to read content from a given file and create a new producer 
@@ -20,13 +20,13 @@ the topic used in the previous stage, and manipulates the data before storing in
 same kafka instance.
 
 The third Micro-Service is designed to load the data into an instance of Elastic Search. This is 
-accomplished by this service by consuming data from the topic containing modified data and making 
+accomplished in this service by consuming data from the topic containing the modified data and making 
 HTTP requests using appropriate Elastic search api to load data into the search service.
 
 The fourth Micro-Service accepts HTTP Get requests to accept queries on the indexes stored in the previous
 step.
 
-This kind of architecture makes sense in the context big data in motion that is designed to under-go
+This kind of architecture makes sense in the context of big data in motion that is designed to under-go
 several modifications in several stages.
 
 ## Build instructions
@@ -58,7 +58,7 @@ Now the data is ready to be queried on the address 127.0.0.1:8080/api/{id_number
 ## Configurations specified
 
 Add the following configurations to each application.conf file in every project.
-These values can be changed at any time after deployed to continue to run the project
+These values can be changed at any time after deployment to run the project
 without rebuilding the whole project again.
 
 ## Micro Service One
@@ -94,6 +94,10 @@ without rebuilding the whole project again.
 |interface (ip-address of the service)|"localhost"|
 |port (http port)|80| 
 |uri (elastic search query string)|"/capstone223510/genomes/"| 
+
+## Results
+
+
 
  
 
