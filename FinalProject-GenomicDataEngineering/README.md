@@ -102,7 +102,7 @@ Like hinted below
 
 ![~](readme-data-show.PNG)
 
-When not using docker, first deploy kafka; configured constants correctly and start
+When not using docker, first deploy kafka; Configure constants correctly in the config files and start
 the micro-services two and three to start the Kafka Consumers.
 
 ![~](readme-final-start2and3.PNG)
