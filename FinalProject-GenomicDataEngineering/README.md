@@ -62,11 +62,12 @@ These values can be changed at any time after deployed to continue to run the pr
 without rebuilding the whole project again.
 
 ## Micro Service One
-|---|---|
-|ip-address of service|"localhost"|
-|port number of service (kafka)|"9092"|
+
+|----------------------------------------------|-----------|
+|ip-address of service                         |"localhost"|
+|port number of service (kafka)                |"9092"|
 |file-name of the input data file (entire path)|"C:\\Users\\Colaberry2017\\Downloads\\1000genomes2.csv"|
-|topic-name|"topicA"|
+|topic-name                                    |"topicA"|
 
 ## Micro Service Two
 |___|___|
