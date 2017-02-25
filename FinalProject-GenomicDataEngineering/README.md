@@ -98,11 +98,11 @@ without rebuilding the whole project again.
 ## Results
 
 The data consists of comma separated  valued file with about 62 columns and 3502 lines
-!(/readme-data-show.PNG)
-!(/readme-final-start2and3.PNG)
-!(/readme-starting-service1.PNG)
-!(/readme-fourth-service-started.PNG)
-!(/readme-browser-test.PNG)
+![~](readme-data-show.PNG)
+![~](readme-final-start2and3.PNG)
+![~](readme-starting-service1.PNG)
+![~](readme-fourth-service-started.PNG)
+![~](readme-browser-test.PNG)
 
 
  
