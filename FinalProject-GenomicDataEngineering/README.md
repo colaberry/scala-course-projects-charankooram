@@ -70,7 +70,8 @@ without rebuilding the whole project again.
 |topic-name|"topicA"|
 
 ## Micro Service Two
-|___|___|
+|~|~|
+|---|---|
 |ip-address of service|"localhost"|
 |port|"9092"|
 |group|"group1"|
@@ -78,16 +79,18 @@ without rebuilding the whole project again.
 |producer-topic (topic name containing new data)|"topic3"|
 
 ## Micro Service Three
-|____|___|
+|~|~|
+|---|---|
 |ip-address of elastic service|"localhost"|
 |port number| 9200| 
 |filepath (original data file path for internal reasons)|"C:\\Users\\Colaberry2017\\Downloads\\1000genomes2.csv"|
-|bootstrap-servers (ip and port number of kafka instance)| "localhost:9092"| 
-|group (consumer group name)| "group1"| 
-|uri (url with index and object name in the elastic search instance)| "/capstone223510/genomes/"| 
+|bootstrap-servers (ip and port number of kafka instance)|"localhost:9092"| 
+|group (consumer group name)|"group1"| 
+|uri (url with index and object name in the elastic search instance)|"/capstone223510/genomes/"| 
  
 ## Micro Service Four
-|___|___|
+|~|~|
+|---|---|
 |interface (ip-address of the service)|"localhost"|
 |port (http port)|80| 
 |uri (elastic search query string)|"/capstone223510/genomes/"| 
