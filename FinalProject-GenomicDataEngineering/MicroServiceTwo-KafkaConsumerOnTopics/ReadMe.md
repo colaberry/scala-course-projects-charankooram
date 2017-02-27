@@ -1,4 +1,11 @@
-Project-2
+# MicroService for Data Enhancement
 
-Scala Akka MicroServices project that has a consumer to read records from a particular topic and publish manipulated data into 
-another topic.
+This service performs modification of the ingested data before storing it into the Elastic Search.
+
+Source is created from a Kafka Consumer from a particular topic. And the Sink was created from a 
+Kafka Producer to another topic.
+
+## Build Instructions
+
+Navigate into the project folder and use the command
+sbt run
