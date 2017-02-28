@@ -1,0 +1,25 @@
+Program Management system (product)
+vision
+releases
+features  
+{
+- backlog --> (release cycle)releases r1,r2,r3.... tool - Jira SCM - Github/SVN 
+--> sprint - (2..4 weeks)
+--> story (user story or requirement)
+}
+-------------------
+Team1 T2 T3 T4 ....
+-------------------
+
+(Source Code)
+Main branch ....
+ 
+  Dev branch 
+    
+	  code review 
+	      
+		     pull request --->build tests ---> Final Merge ---> bug reporting/jira
+			                 (+ lint/static
+				             code checkers)
+							 
+Colaberry/mdda-scala/wiki
