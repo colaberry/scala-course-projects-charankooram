@@ -1,0 +1,71 @@
+
+Homework notes ... Basic scala project
+
+Student -> Course1,Course2,Course3
+Course  ->
+School   -> Student1,Student2 , Student3
+
+English
+Physics
+Chemistry
+Maths
+Social
+
+
+
+
+// Reference material for actor-akka
+docs.akka.io/docs/akka/current/scala.actors.html
+
+
+docs.akka.io/docs/akka/2.4/AkkaScala.pdf
+
+
+
+Final Project notes --
+
+
+> start new project; stitch code blocks from various sources to get something useable running.
+> project folder - > subprojects
+
+u-service 1 - step 1 > read a file and write into kafka
+  -- read from a file . .write into a file
+  -- read from a file .. write into kafka (some Topic T1)
+  -- each row is a record. (read line by line)
+  -- install kafka locally. (reactive streams api) (Reactive kafka example -- random
+      number generator)
+ 
+  
+  
+u-service 2 - step 2 > read from kafka (T1)/ Enhance and write to (T2)
+  -- 
+
+u-service 3 - step 3 > read from kafka (T2) writes to elastic search
+
+u-service 4 - step 4 >  HTTP service to search in ES and respond
+                         with results (HTTP microservice example)  
+						=> (store metrics in Cassandra)
+
+
+All projects -> Logging.... 
+                Config files...
+				
+Testing..
+flatspecs - unit testing
+            integration testing 
+			system testing
+			perf testing/load testing
+			regression testing - test one more time all test cases to check nothing broke.
+			acceptance testing (Business team)
+			
+			deploy - release
+			
+			
+become/unbecome ---> FSM
+(concurrent - use immutable objects )
+
+
+			
+			
+
+
