@@ -46,10 +46,11 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
 
     case MessageTalk.Run => {
 
-      var filepath = ConfigFactory.load().getString("constants.filepath")
-      var bootstrapServers = ConfigFactory.load().getString("constants.bootstrap-servers")
-      var group = ConfigFactory.load().getString("constants.group")
-      var uri_string = ConfigFactory.load().getString("constants.uri")
+      val config = ConfigFactory.load()
+      var filepath = config.getString("constants.filepath")
+      var bootstrapServers = config.getString("constants.bootstrap-servers")
+      var group = config.getString("constants.group")
+      var uri_string = config.getString("constants.uri")
 
       Console println "Reading File ..."
       val source = scala.io.Source.fromFile(filepath)
@@ -105,7 +106,7 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
       *   Sink - ignore because no real goal
       *
       * */
-      val returnedValue: Future[Done] = Consumer.committableSource(consumerSettings, Subscriptions.topics("topic3")).
+      val returnedValue: Future[Done] = Consumer.committableSource(consumerSettings, Subscriptions.topics(config.getString("constants.consumer-topic")).
         map(
             f = elem => {
               val line = elem.record.value()
@@ -223,7 +224,7 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
 
 
   lazy val ipApiConnectionFlow: Flow[HttpRequest, HttpResponse, Any] =
-    Http().outgoingConnection(ConfigFactory.load().getString("services.ip-api.host"), ConfigFactory.load().getInt("services.ip-api.port"))
+    Http().outgoingConnection(config.getString("services.ip-api.host"), config.getInt("services.ip-api.port"))
 
 
 
