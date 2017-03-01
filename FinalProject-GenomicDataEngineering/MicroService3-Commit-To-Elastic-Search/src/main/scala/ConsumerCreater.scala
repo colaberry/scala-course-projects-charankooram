@@ -108,7 +108,7 @@ class ConsumerCreater(implicit mat: Materializer, implicit val system:ActorSyste
       * */
       val returnedValue: Future[Done] = Consumer.committableSource(consumerSettings, Subscriptions.topics(config.getString("constants.consumer-topic")).
         map(
-            f = elem => {
+            elem => {
               val line = elem.record.value()
               var word_array = line.split(",")
               val first = word_array(0)
